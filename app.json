@@ -13,9 +13,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/iconA.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.azschiaffino.Broobe"
     },
     "web": {
       "bundler": "metro",
@@ -36,6 +37,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "276152ba-7f35-4694-865c-8a4b3033594a"
+      }
     }
   }
 }

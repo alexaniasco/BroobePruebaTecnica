@@ -1,50 +1,74 @@
-# Welcome to your Expo app 👋
+# Prueba Técnica
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Requisitos Previos
 
-## Get started
+- Node.js instalado
+- Expo CLI instalado
+- Reactotron (para desarrollo)
 
-1. Install dependencies
+## Configuración Inicial
+
+1. Instalar dependencias:
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. Iniciar la aplicación:
 
    ```bash
-    npx expo start
+   npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+## Estructura de Carpetas
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+├── app/                 # Directorio principal de la aplicación
+│   ├── (tabs)/          # Pantallas de la aplicación
+│   ├── details/         # Pantalla de detalles
+│   
+│ 
+├── assets/              # Imágenes, fuentes y otros recursos
+├── components/          # Componentes reutilizables
+├── handles/             # Manejadores de datos
+├── styles/              # Estilos
+└── app.json             # Configuración de Expo
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Herramientas de Desarrollo
 
-## Learn more
+### Reactotron
 
-To learn more about developing your project with Expo, look at the following resources:
+Para una mejor experiencia de desarrollo, este proyecto utiliza Reactotron para debugging.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+1. Descarga Reactotron desde [https://github.com/infinitered/reactotron/releases](https://github.com/infinitered/reactotron/releases)
+2. Instala la aplicación en tu computadora
+3. Abre Reactotron antes de iniciar la aplicación
 
-## Join the community
+## Opciones de Desarrollo
 
-Join our community of developers creating universal apps.
+Puedes ejecutar la aplicación en:
+- Emulador de Android
+- Simulador de iOS
+- Dispositivo físico usando Expo Go
+- Navegador web (algunas características pueden no estar disponibles)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Comandos Útiles
+
+```bash
+# Iniciar la aplicación
+npx expo start
+
+# Iniciar en modo web
+npx expo start --web
+
+# Iniciar en dispositivo Android
+npx expo start --android
+
+# Iniciar en dispositivo iOS
+npx expo start --ios
+```
+
+## Soporte
+
+Para cualquier duda o problema, por favor crear un issue en el repositorio.

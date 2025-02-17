@@ -1,64 +1,69 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { StyleSheet, View, ScrollView, Text } from "react-native";
+import RenderLineChart from "@/components/ui/charts/RenderLineChart";
+import FontSizes from "@/styles/fontSize";
+import { PageSpeedForm } from "@/components/ui/pageSpeedForm";
+import { ResultsSection } from "@/components/ui/resultSection";
+import { usePageSpeed } from "@/handles/usePageSpeed";
 
 export default function HomeScreen() {
+  const {
+    url,
+    setUrl,
+    loading,
+    setLoading,
+    data,
+    strategy,
+    setStrategy,
+    isChecked,
+    setIsChecked,
+    handleAnalyze,
+  } = usePageSpeed();
+
+  const option = {
+    xAxis: {
+      type: "category",
+      data: ["ACC", "BP", "PERFO", "SEO"],
+    },
+    yAxis: {
+      type: "value",
+    },
+    series: [
+      {
+        data: data?.chartData || [0, 0, 0, 0],
+        type: "bar",
+      },
+    ],
+  };
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+    <ScrollView style={{ backgroundColor: "#F5F5F5" }}>
+      <View className="flex-1 p-4 gap-4 justify-between">
+        <Text style={styles.titleContainer}>Análisis de rendimiento</Text>
+
+        <PageSpeedForm
+          url={url}
+          setUrl={setUrl}
+          strategy={strategy}
+          setStrategy={setStrategy}
+          isChecked={isChecked}
+          setIsChecked={setIsChecked}
+          loading={loading}
+          onAnalyze={handleAnalyze}
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+
+        <RenderLineChart option={option} />
+
+        <ResultsSection data={data} setLoading={setLoading} />
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+    fontSize: FontSizes.XL,
+    fontWeight: "bold",
+    color: "#6053C1",
   },
   stepContainer: {
     gap: 8,
@@ -69,6 +74,6 @@ const styles = StyleSheet.create({
     width: 290,
     bottom: 0,
     left: 0,
-    position: 'absolute',
+    position: "absolute",
   },
 });
